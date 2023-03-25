@@ -5,27 +5,15 @@ let oneEuroIs = {
     "GBP": 0.8, // british pound
 }
 
-// one dollar is:
-let oneDollarIs = {
-    "JPY": 130.75, // japan yen
-    "EUR": 0.93, // euro euros
-    "GBP": 0.82, // british pound
-}
-
-// one yen is:
-let oneYenIs = {
-    "EUR": 0.0071, // euro euro
-    "USD": 0.0076, // us dollar
-    "GBP": 0.0063, // british pound
-}
-
 // this is my function that sums two numbers
 const sum = (a,b) => {
     return a + b
 }
 
 const fromDollarToYen = (usd) => {
-    return usd * oneDollarIs.JPY;
+    let euros = usd / oneEuroIs.USD;
+    let yen = euros * oneEuroIs.JPY;
+    return yen;
 }
 
 const fromEuroToDollar = (eu) => {
@@ -33,14 +21,16 @@ const fromEuroToDollar = (eu) => {
 }
 
 const fromYenToPound = (yen) => {
-    return yen * oneYenIs.GBP;
+    let euros = yen / oneEuroIs.JPY;
+    let pounds = euros * oneEuroIs.GBP;
+    return pounds;
 }
 
 // just a console log for ourselves.
 console.log(sum(7,3))
-console.log("Dollar to Yen " + fromDollarToYen(5))
+console.log("Dollar to Yen " + fromDollarToYen(2.3))
 console.log("Euro to Dollar " + fromEuroToDollar(3.5))
-console.log("Yen to Pound " + fromYenToPound(3))
+console.log("Yen to Pound " + fromYenToPound(20000.1))
 
 // export the function to be used on other files 
 // (similar to the keyword `export` when using webpack)
